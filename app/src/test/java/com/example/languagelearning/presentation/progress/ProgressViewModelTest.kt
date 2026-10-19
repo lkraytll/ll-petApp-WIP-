@@ -8,11 +8,13 @@ import com.example.languagelearning.data.local.WeeklyStudyTime
 import com.example.languagelearning.data.remote.ApiService
 import com.example.languagelearning.data.remote.dto.ChangePasswordRequestDto
 import com.example.languagelearning.data.remote.dto.CourseDto
+import com.example.languagelearning.data.remote.dto.DailyProgressDto
 import com.example.languagelearning.data.remote.dto.LessonDto
 import com.example.languagelearning.data.remote.dto.ProgressDto
 import com.example.languagelearning.data.remote.dto.RegisteredUser
 import com.example.languagelearning.data.remote.dto.UpdateProfileRequestDto
 import com.example.languagelearning.data.remote.dto.UpdateProgressRequestDto
+import com.example.languagelearning.data.remote.dto.WeeklyTimeDto
 import com.example.languagelearning.data.repository.ProgressRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -24,6 +26,7 @@ import kotlinx.coroutines.test.setMain
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.After
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -46,6 +49,11 @@ class ProgressViewModelTest {
             } else {
                 throw Exception("Failed to load progress")
             }
+        }
+
+        override suspend fun getDailyProgress(userId: Int): Response<DailyProgressDto> {
+            val weekly = WeeklyTimeDto(100, 200, 300, 400, 500, 600, 700)
+            return Response.success(DailyProgressDto("Thu", 900, 15, 5, 20, weekly))
         }
 
         override suspend fun updateProgress(userId: Int, lessonId: Int, body: UpdateProgressRequestDto): Response<ProgressDto> {
@@ -85,6 +93,8 @@ class ProgressViewModelTest {
         vm.loadUserProgress()
         assertTrue(vm.state.value is ProgressState.Success)
         assertEquals(1, (vm.state.value as ProgressState.Success).progressList.size)
+        assertNotNull(vm.dailyProgress.value)
+        assertEquals("Thu", vm.dailyProgress.value?.day)
         assertEquals(400, vm.weeklyStudyTime.value.thu)
     }
 }

@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/fredoka"
             android:text="@string/let_s_keep_learning"
-            android:textColor="@color/hint_color"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:layout_marginHorizontal="16dp"
             app:layout_constraintStart_toStartOf="parent"

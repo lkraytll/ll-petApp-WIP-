@@ -43,6 +43,16 @@ class MainMenuFragment : Fragment() {
         binding.pgCurrentLanguage.setOnClickListener {
             findNavController().navigate(R.id.action_mainMenuFragment_to_quizSelectWordFragment)
         }
+
+        binding.cardWeeklyGoal.setOnClickListener {
+            if (navControllerCanNavigate()) {
+                findNavController().navigate(R.id.taskFragment)
+            }
+        }
+    }
+
+    private fun navControllerCanNavigate(): Boolean {
+        return findNavController().currentDestination?.id == R.id.mainMenuFragment
     }
 
     private fun observeViewModel() {

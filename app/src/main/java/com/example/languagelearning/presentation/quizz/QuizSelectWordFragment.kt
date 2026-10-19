@@ -55,12 +55,7 @@ class QuizSelectWordFragment : Fragment() {
             showExitWarningDialog()
         }
 
-        binding.soundButton.setOnClickListener {
-            viewModel.speak("Hello! Select the correct word.")
-        }
-
         binding.btnSubmit.setOnClickListener {
-            viewModel.stopSpeech()
             findNavController().navigate(R.id.action_quizSelectWordFragment_to_quizMeaningFragment)
         }
     }

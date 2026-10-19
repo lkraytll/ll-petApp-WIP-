@@ -48,6 +48,15 @@ class ProgressFragment : Fragment() {
                 }
 
                 launch {
+                    viewModel.dailyProgress.collect { daily ->
+                        if (daily != null) {
+                            val mins = if (daily.timeMinutes > 0) daily.timeMinutes else daily.timeSeconds / 60
+                            binding.tvThisWeek.text = "${daily.day ?: "Today"}: ${mins}m"
+                        }
+                    }
+                }
+
+                launch {
                     viewModel.state.collect { state ->
                         when (state) {
                             is ProgressState.Loading -> {}

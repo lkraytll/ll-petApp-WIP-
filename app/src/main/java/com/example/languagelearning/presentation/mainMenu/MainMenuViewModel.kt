@@ -16,17 +16,10 @@ import javax.inject.Inject
 class MainMenuViewModel @Inject constructor(
     private val courseRepository: CourseRepository,
     private val tokenManager: TokenManager,
-    private val ttsManager: com.example.languagelearning.data.tts.TtsManager
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<MainMenuState>(MainMenuState.Loading)
     val state: StateFlow<MainMenuState> = _state.asStateFlow()
-
-    fun speak(text: String) {
-        viewModelScope.launch {
-            ttsManager.speak(text)
-        }
-    }
 
     private val _userInfo = MutableStateFlow<UserInfo?>(null)
     val userInfo: StateFlow<UserInfo?> = _userInfo.asStateFlow()

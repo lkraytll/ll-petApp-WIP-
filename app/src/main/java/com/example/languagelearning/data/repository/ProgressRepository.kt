@@ -17,6 +17,22 @@ class ProgressRepository @Inject constructor(
         }
     }
 
+    suspend fun getDailyProgress(userId: Int): Result<com.example.languagelearning.data.remote.dto.DailyProgressDto> {
+        return runCatching {
+            val response = api.getDailyProgress(userId)
+            if (response.isSuccessful && response.body() != null) {
+                response.body()!!
+            } else {
+                val rawError = response.errorBody()?.string()
+                val parsed = com.example.languagelearning.data.remote.ErrorUtils.parseErrorMessage(
+                    rawError,
+                    "Failed to load daily progress"
+                )
+                throw Exception(parsed)
+            }
+        }
+    }
+
     suspend fun updateProgress(
         userId: Int,
         lessonId: Int,

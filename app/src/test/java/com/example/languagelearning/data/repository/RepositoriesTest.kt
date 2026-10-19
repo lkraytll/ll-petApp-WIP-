@@ -13,6 +13,7 @@ import com.example.languagelearning.data.remote.dto.RegisteredUser
 import com.example.languagelearning.data.remote.dto.UpdateProgressRequestDto
 import com.example.languagelearning.data.remote.dto.UpdateProfileRequestDto
 import com.example.languagelearning.data.remote.dto.ChangePasswordRequestDto
+import com.example.languagelearning.data.remote.dto.DailyProgressDto
 import kotlinx.coroutines.runBlocking
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
@@ -44,6 +45,10 @@ class RepositoriesTest {
 
         override suspend fun getProgress(userId: Int): List<ProgressDto> {
             return listOf(ProgressDto(userId, 1, 5, 20))
+        }
+
+        override suspend fun getDailyProgress(userId: Int): Response<DailyProgressDto> {
+            return Response.success(DailyProgressDto(day = "Today", timeSeconds = 900, timeMinutes = 15))
         }
 
         override suspend fun updateProgress(
@@ -85,6 +90,7 @@ class RepositoriesTest {
         override suspend fun getLesson(lessonId: Int): LessonDto = throw Exception("Network error")
         override suspend fun getLessonsByCourse(courseId: Int): List<LessonDto> = throw Exception("Network error")
         override suspend fun getProgress(userId: Int): List<ProgressDto> = throw Exception("Network error")
+        override suspend fun getDailyProgress(userId: Int): Response<DailyProgressDto> = Response.error(500, "{\"message\":\"Daily progress error\"}".toResponseBody(null))
         override suspend fun updateProgress(userId: Int, lessonId: Int, body: UpdateProgressRequestDto): Response<ProgressDto> = Response.error(500, "{\"message\":\"Server error\"}".toResponseBody(null))
         override suspend fun getMe(): Response<RegisteredUser> = Response.error(404, "{\"message\":\"User not found\"}".toResponseBody(null))
         override suspend fun updateMe(body: UpdateProfileRequestDto): Response<RegisteredUser> = Response.error(409, "{\"message\":\"Email in use\"}".toResponseBody(null))
@@ -127,12 +133,21 @@ class RepositoriesTest {
         val progressResult = repo.getProgress(100)
         assertTrue(progressResult.isSuccess)
 
+        val dailyResult = repo.getDailyProgress(100)
+        assertTrue(dailyResult.isSuccess)
+        assertEquals(900, dailyResult.getOrNull()?.timeSeconds)
+
         val updateResult = repo.updateProgress(100, 10, true, 100)
         assertTrue(updateResult.isSuccess)
 
         val errorResult = repo.updateProgress(-1, 10, true, 100)
         assertTrue(errorResult.isFailure)
         assertEquals("Invalid user", errorResult.exceptionOrNull()?.message)
+
+        val errRepo = ProgressRepository(fakeErrorApiService)
+        val dailyErr = errRepo.getDailyProgress(100)
+        assertTrue(dailyErr.isFailure)
+        assertEquals("Daily progress error", dailyErr.exceptionOrNull()?.message)
     }
 
     @Test

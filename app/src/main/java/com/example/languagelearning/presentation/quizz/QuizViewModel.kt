@@ -16,26 +16,10 @@ import javax.inject.Inject
 class QuizViewModel @Inject constructor(
     private val progressRepository: ProgressRepository,
     private val tokenManager: TokenManager,
-    private val ttsManager: com.example.languagelearning.data.tts.TtsManager
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<QuizState>(QuizState.Idle)
     val state: StateFlow<QuizState> = _state.asStateFlow()
-
-    fun speak(text: String) {
-        viewModelScope.launch {
-            ttsManager.speak(text)
-        }
-    }
-
-    fun stopSpeech() {
-        ttsManager.stop()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        ttsManager.stop()
-    }
 
     fun completeLesson(lessonId: Int = 1, isCompleted: Boolean = true, score: Int = 100) {
         viewModelScope.launch {

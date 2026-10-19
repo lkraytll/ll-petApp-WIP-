@@ -38,6 +38,11 @@ interface ApiService {
         @Path("userId") userId: Int,
     ): List<ProgressDto>
 
+    @GET("progress/{userId}/today")
+    suspend fun getDailyProgress(
+        @Path("userId") userId: Int,
+    ): Response<com.example.languagelearning.data.remote.dto.DailyProgressDto>
+
     @PUT("progress/{userId}/{lessonId}")
     suspend fun updateProgress(
         @Path("userId") userId: Int,

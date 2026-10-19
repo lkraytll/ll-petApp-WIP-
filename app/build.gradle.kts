@@ -124,7 +124,4 @@ dependencies {
 
     // DataStore Preferences
     implementation(libs.datastore.preferences)
-
-    // ONNX Runtime for Silero TTS
-    implementation(libs.onnxruntime.android)
 }

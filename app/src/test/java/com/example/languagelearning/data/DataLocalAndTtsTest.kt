@@ -3,7 +3,6 @@ package com.example.languagelearning.data
 import com.example.languagelearning.data.local.GoalInfo
 import com.example.languagelearning.data.local.UserInfo
 import com.example.languagelearning.data.local.WeeklyStudyTime
-import com.example.languagelearning.data.tts.AudioPlayer
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -38,12 +37,5 @@ class DataLocalAndTtsTest {
         assertEquals(500, weekly.fri)
         assertEquals(600, weekly.sat)
         assertEquals(700, weekly.sun)
-    }
-
-    @Test
-    fun testAudioPlayerStopAndRelease() {
-        val player = AudioPlayer()
-        player.stop()
-        player.release()
     }
 }

@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var navController: NavController
 
-    private val tabTitles = listOf("Home", "Courses", "Progress", "Profile")
+    private val tabTitles = listOf("Home", "Streak", "Progress", "Profile")
     private val tabIcons = listOf(
         R.drawable.ic_home,
         R.drawable.ic_courses,

@@ -10,17 +10,6 @@ import org.junit.Test
 class DiModulesTest {
 
     @Test
-    fun testTtsModuleProvides() {
-        val dummyContext = object : ContextWrapper(null) {
-            override fun getApplicationContext(): Context {
-                return this
-            }
-        }
-        val ttsManager = TtsModule.provideTtsManager(dummyContext)
-        assertNotNull(ttsManager)
-    }
-
-    @Test
     fun testNetworkModuleProvides() {
         val dummyContext = object : ContextWrapper(null) {
             override fun getApplicationContext(): Context {
