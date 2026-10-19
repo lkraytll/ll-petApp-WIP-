@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Изучение Языков</string>
+    <string name="hello_blank_fragment">Приветственный фрагмент</string>
+    <string name="fr_login_fragment_login">Войти</string>
+    <string name="iv_desc_pointer">иконка_назад</string>
+    <string name="login_tv_line">Бесплатно, присоединяйся и \n начни учиться</string>
+    <string name="forgot_password">Забыли пароль?</string>
+    <string name="register">Регистрация</string>
+    <string name="text_create_an_account">Создать аккаунт</string>
+    <string name="register_first_name_hint">   Имя</string>
+    <string name="last_name">Фамилия</string>
+    <string name="ea_hint">Электронная почта</string>
+    <string name="s_continue">Продолжить</string>
+    <string name="tv_already_a_member">Уже зарегистрированы?</string>
+    <string name="choose_a_password">Выберите пароль</string>
+    <string name="enter_password">Введите пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="password_doesnt_match">Пароли не совпадают</string>
+    <string name="signup">Зарегистрироваться</string>
+    <string name="already_have_a_account">Уже есть аккаунт?</string>
+    <string name="or">Или</string>
+    <string name="profile_image">фото профиля</string>
+    <string name="let_s_keep_learning">Продолжаем учиться</string>
+    <string name="continue_course">Продолжить курс</string>
+    <string name="none">нет</string>
+    <string name="back">Назад</string>
+    <string name="study_goal">Цель обучения</string>
+    <string name="settings">Настройки</string>
+    <string name="profile">Профиль</string>
+
+    <!-- Навигационные вкладки -->
+    <string name="tab_home">Главная</string>
+    <string name="tab_courses">Курсы</string>
+    <string name="tab_progress">Прогресс</string>
+    <string name="tab_profile">Профиль</string>
+
+    <!-- Цели обучения -->
+    <string name="question_how_many_days">Сколько дней в неделю вы будете учиться?</string>
+    <string name="subtitle_choose_goal">Выберите цель, которую сможете соблюдать каждую неделю.</string>
+    <string name="weekly_goal">Цель на неделю</string>
+    <string name="current_streak">Текущий стрик</string>
+    <string name="set_goal">Установить цель</string>
+    <string name="goal_locked_message">Выбор заблокирован! Выполните текущую цель (%1$s/%2$s дн.), чтобы изменить её.</string>
+    <string name="goal_completed_message">Поздравляем! Ваша текущая цель выполнена. Вы можете выбрать новую цель!</string>
+
+    <!-- Профиль и Активность -->
+    <string name="my_activity">Моя активность</string>
+    <string name="study_time_label">Время в занятиях</string>
+    <string name="view_all">Смотреть всё</string>
+    <string name="achievements">Достижения</string>
+
+    <!-- Квизы и Уроки -->
+    <string name="exit_lesson_title">Выйти из урока?</string>
+    <string name="exit_lesson_message">Ваш текущий прогресс в уроке будет потерян. Вы уверены, что хотите выйти?</string>
+    <string name="exit">Выйти</string>
+    <string name="cancel">Отмена</string>
+    <string name="congratulations">Поздравляем! 🎉</string>
+    <string name="lesson_completed">Урок успешно завершён! Ваш результат сохранён.</string>
+    <string name="awesome">Отлично</string>
+</resources>

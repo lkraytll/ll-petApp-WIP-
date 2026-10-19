@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Header -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clHeader"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/deep_purple"
+        android:paddingHorizontal="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/study_goal"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/fredoka"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Main content -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingHorizontal="25dp"
+        android:paddingTop="30dp"
+        android:paddingBottom="25dp"
+        app:layout_constraintTop_toBottomOf="@id/clHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <!-- Question -->
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="How many days will you study each week?"
+            android:textColor="#25252D"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/fredoka"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <!-- Subtitle -->
+
+        <TextView
+            android:id="@+id/tvSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Choose a goal that you can keep every week."
+            android:textColor="#9999A1"
+            android:textSize="14sp"
+            android:fontFamily="@font/fredoka"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/tvQuestion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <!-- Lock Status Banner -->
+
+        <LinearLayout
+            android:id="@+id/llLockBanner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_lock_banner"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvLockIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔒"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvLockMessage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/fredoka"
+                android:text="Цель заблокирована! Выполните текущий стрик, чтобы изменить выбор."
+                android:textColor="#5D4037"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- Goal options -->
+
+        <HorizontalScrollView
+            android:id="@+id/scrollGoals"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="@id/llLockBanner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/llGoals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- 3 days -->
+
+                <TextView
+                    android:id="@+id/tvGoal3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_goal"
+                    android:gravity="center"
+                    android:text="3\nDays"
+                    android:textColor="#4B4B59"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/fredoka"
+                    android:textStyle="bold" />
+
+                <!-- 4 days -->
+
+                <TextView
+                    android:id="@+id/tvGoal4"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_goal"
+                    android:gravity="center"
+                    android:text="4\nDays"
+                    android:textColor="#4B4B59"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/fredoka"
+                    android:textStyle="bold" />
+
+                <!-- 5 days -->
+
+                <TextView
+                    android:id="@+id/tvGoal5"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_goal_selected"
+                    android:gravity="center"
+                    android:text="5\nDays"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/fredoka"
+                    android:textStyle="bold" />
+
+                <!-- 6 days -->
+
+                <TextView
+                    android:id="@+id/tvGoal6"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/bg_goal"
+                    android:gravity="center"
+                    android:text="6\nDays"
+                    android:textColor="#4B4B59"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/fredoka"
+                    android:textStyle="bold" />
+
+                <!-- 7 days -->
+
+                <TextView
+                    android:id="@+id/tvGoal7"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/bg_goal"
+                    android:gravity="center"
+                    android:text="7\nDays"
+                    android:textColor="#4B4B59"
+                    android:textSize="15sp"
+                    android:fontFamily="@font/fredoka"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+        <!-- Weekly goal card -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clWeeklyGoal"
+            android:layout_width="0dp"
+            android:layout_height="145dp"
+            android:layout_marginTop="30dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_goal_card"
+            app:layout_constraintTop_toBottomOf="@id/scrollGoals"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvWeeklyGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly Goal"
+                android:textColor="#25252D"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/fredoka"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvGoalProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 / 5 days"
+                android:textColor="#777780"
+                android:textSize="14sp"
+                android:fontFamily="@font/fredoka"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressGoal"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="18dp"
+                android:max="5"
+                android:progress="3"
+                android:progressDrawable="@drawable/progress_bar"
+                android:background="@drawable/progress_card_rounded"
+                android:indeterminate="false"
+                app:layout_constraintTop_toBottomOf="@id/tvWeeklyGoal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvGoalDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Complete your goal to earn a reward!"
+                android:textColor="#9999A1"
+                android:textSize="13sp"
+                android:fontFamily="@font/fredoka"
+                app:layout_constraintTop_toBottomOf="@id/progressGoal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- Streak -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clStreak"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="15dp"
+            android:padding="18dp"
+            android:background="@drawable/bg_goal_card"
+            app:layout_constraintTop_toBottomOf="@id/clWeeklyGoal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvStreakIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔥"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/tvStreakTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="Current Streak"
+                android:textColor="#25252D"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/fredoka"
+                app:layout_constraintStart_toEndOf="@id/tvStreakIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvStreak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="7 days"
+                android:textColor="#777780"
+                android:textSize="14sp"
+                android:fontFamily="@font/fredoka"
+                app:layout_constraintStart_toEndOf="@id/tvStreakIcon"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- Reward -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clReward"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="15dp"
+            android:paddingHorizontal="18dp"
+            android:background="@drawable/bg_reward"
+            app:layout_constraintTop_toBottomOf="@id/clStreak"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvRewardIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🎁"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/tvReward"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="Complete your weekly goal and get +100 XP"
+                android:textColor="#25252D"
+                android:textSize="14sp"
+                android:fontFamily="@font/fredoka"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/tvRewardIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!-- Continue -->
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:text="Set Goal"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/fredoka"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/deep_purple"
+            app:cornerRadius="16dp"
+            app:layout_constraintTop_toBottomOf="@id/clReward"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

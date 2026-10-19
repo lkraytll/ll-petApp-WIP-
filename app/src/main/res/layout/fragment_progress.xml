@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.progress.ProgressFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_progress"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/deep_purple"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/headerEndPlaceholder"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/fredoka"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="Progress"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/headerEndPlaceholder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_progress">
+
+        <TextView
+            android:id="@+id/tv_courses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka_medium"
+            android:text="Courses"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/course_card"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/progress_card_rounded"
+            android:backgroundTint="@color/purple"
+            android:padding="15dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_courses">
+
+            <TextView
+                android:id="@+id/tv_course_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka_medium"
+                android:text="Current Language"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_course_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/fredoka_regular"
+                android:text="15 / 20 lessons"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_course_name" />
+
+            <ProgressBar
+                android:id="@+id/course_progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:max="100"
+                android:progress="75"
+                android:progressDrawable="@drawable/progress_bar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/fredoka_medium"
+            android:text="Progress"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/course_card" />
+
+        <TextView
+            android:id="@+id/tv_this_week"
+            android:layout_width="100dp"
+            android:layout_height="38dp"
+            android:background="@drawable/card_background"
+            android:fontFamily="@font/fredoka_regular"
+            android:gravity="center"
+            android:text="This Week"
+            android:textColor="@color/hint_color"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_progress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_progress" />
+
+        <!-- Chart Container -->
+        <LinearLayout
+            android:id="@+id/chart"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="15dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_progress">
+
+            <!-- MON -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBadgeMon"
+                    android:layout_width="35dp"
+                    android:layout_height="22dp"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:textColor="#333333"
+                    android:textSize="10sp"
+                    tools:text="7m" />
+
+                <View
+                    android:id="@+id/vBarMon"
+                    android:layout_width="24dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/chart_bar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:text="Mon"
+                    android:textColor="@color/hint_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- TUE -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBadgeTue"
+                    android:layout_width="35dp"
+                    android:layout_height="22dp"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:textColor="#333333"
+                    android:textSize="10sp"
+                    tools:text="10m" />
+
+                <View
+                    android:id="@+id/vBarTue"
+                    android:layout_width="24dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/chart_bar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:text="Tue"
+                    android:textColor="@color/hint_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- WED -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBadgeWed"
+                    android:layout_width="35dp"
+                    android:layout_height="22dp"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:textColor="#333333"
+                    android:textSize="10sp"
+                    tools:text="5m" />
+
+                <View
+                    android:id="@+id/vBarWed"
+                    android:layout_width="24dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/chart_bar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:text="Wed"
+                    android:textColor="@color/hint_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- THU -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBadgeThu"
+                    android:layout_width="35dp"
+                    android:layout_height="22dp"
+                    android:layout_marginBottom="3dp"
+                    android:background="@drawable/selected_chart_bar"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    tools:text="15m" />
+
+                <View
+                    android:id="@+id/vBarThu"
+                    android:layout_width="24dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/selected_chart_bar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:text="Thur"
+                    android:textColor="@color/hint_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- FRI -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBadgeFri"
+                    android:layout_width="35dp"
+                    android:layout_height="22dp"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:textColor="#333333"
+                    android:textSize="10sp"
+                    tools:text="4m" />
+
+                <View
+                    android:id="@+id/vBarFri"
+                    android:layout_width="24dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/chart_bar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:text="Fri"
+                    android:textColor="@color/hint_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- SAT -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBadgeSat"
+                    android:layout_width="35dp"
+                    android:layout_height="22dp"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:textColor="#333333"
+                    android:textSize="10sp"
+                    tools:text="12m" />
+
+                <View
+                    android:id="@+id/vBarSat"
+                    android:layout_width="24dp"
+                    android:layout_height="80dp"
+                    android:background="@drawable/chart_bar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:text="Sat"
+                    android:textColor="@color/hint_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- SUN -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="bottom|center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvBadgeSun"
+                    android:layout_width="35dp"
+                    android:layout_height="22dp"
+                    android:layout_marginBottom="3dp"
+                    android:gravity="center"
+                    android:textColor="#333333"
+                    android:textSize="10sp"
+                    tools:text="6m" />
+
+                <View
+                    android:id="@+id/vBarSun"
+                    android:layout_width="24dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/chart_bar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="center"
+                    android:text="Sun"
+                    android:textColor="@color/hint_color"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_completed_task"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/fredoka_medium"
+            android:text="Completed Task"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chart" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_completed_tasks"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:clipToPadding="false"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_completed_task"
+            tools:listitem="@layout/item_tasks" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

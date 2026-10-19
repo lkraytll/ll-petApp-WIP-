@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/loginFragment2">
+
+    <!-- Auth Flow -->
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.example.languagelearning.presentation.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment2_to_registrationFragment2"
+            app:destination="@+id/registrationFragment2" />
+        <action
+            android:id="@+id/action_loginFragment2_to_mainMenuFragment"
+            app:destination="@+id/mainMenuFragment"
+            app:popUpTo="@+id/loginFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrationFragment2"
+        android:name="com.example.languagelearning.presentation.registration.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/action_registrationFragment2_to_passwordChooseFragment"
+            app:destination="@+id/passwordChooseFragment" />
+        <action
+            android:id="@+id/action_registrationFragment2_to_loginFragment2"
+            app:destination="@+id/loginFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/passwordChooseFragment"
+        android:name="com.example.languagelearning.presentation.registration.PasswordChooseFragment"
+        android:label="fragment_password_choose"
+        tools:layout="@layout/fragment_password_choose">
+        <action
+            android:id="@+id/action_passwordChooseFragment_to_loginFragment2"
+            app:destination="@+id/loginFragment2" />
+        <action
+            android:id="@+id/action_passwordChooseFragment_to_mainMenuFragment"
+            app:destination="@+id/mainMenuFragment"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Main Tabs -->
+    <fragment
+        android:id="@+id/mainMenuFragment"
+        android:name="com.example.languagelearning.presentation.mainMenu.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu">
+        <action
+            android:id="@+id/action_mainMenuFragment_to_quizSelectWordFragment"
+            app:destination="@+id/quizSelectWordFragment" />
+        <action
+            android:id="@+id/action_mainMenuFragment_to_loginFragment2"
+            app:destination="@+id/loginFragment2"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskFragment"
+        android:name="com.example.languagelearning.presentation.task.TaskFragment"
+        android:label="fragment_task"
+        tools:layout="@layout/fragment_task" />
+
+    <fragment
+        android:id="@+id/progressFragment"
+        android:name="com.example.languagelearning.presentation.progress.ProgressFragment"
+        android:label="fragment_progress"
+        tools:layout="@layout/fragment_progress" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.languagelearning.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_settingsFragment"
+            app:destination="@+id/settingsFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment2"
+            app:destination="@+id/loginFragment2"
+            app:popUpTo="@+id/nav_graph"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.languagelearning.presentation.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_profileEditFragment"
+            app:destination="@+id/profileEditFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileEditFragment"
+        android:name="com.example.languagelearning.presentation.settings.ProfileEditFragment"
+        android:label="fragment_profile_edit"
+        tools:layout="@layout/fragment_profile_edit" />
+
+    <!-- Quiz Flow -->
+    <fragment
+        android:id="@+id/quizSelectWordFragment"
+        android:name="com.example.languagelearning.presentation.quizz.QuizSelectWordFragment"
+        android:label="fragment_quiz_select_word"
+        tools:layout="@layout/fragment_quiz_select_word">
+        <action
+            android:id="@+id/action_quizSelectWordFragment_to_quizMeaningFragment"
+            app:destination="@+id/quizMeaningFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizMeaningFragment"
+        android:name="com.example.languagelearning.presentation.quizz.QuizMeaningFragment"
+        android:label="fragment_quiz_meaning"
+        tools:layout="@layout/fragment_quiz_meaning">
+        <action
+            android:id="@+id/action_quizMeaningFragment_to_quizImageFragment"
+            app:destination="@+id/quizImageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizImageFragment"
+        android:name="com.example.languagelearning.presentation.quizz.QuizImageFragment"
+        android:label="fragment_quiz_image"
+        tools:layout="@layout/fragment_quiz_image">
+        <action
+            android:id="@+id/action_quizImageFragment_to_quizTranslateFragment"
+            app:destination="@+id/quizTranslateFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/quizTranslateFragment"
+        android:name="com.example.languagelearning.presentation.quizz.QuizTranslateFragment"
+        android:label="fragment_quiz_translate"
+        tools:layout="@layout/fragment_quiz_translate">
+        <action
+            android:id="@+id/action_quizTranslateFragment_to_mainMenuFragment"
+            app:destination="@+id/mainMenuFragment"
+            app:popUpTo="@+id/mainMenuFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Global actions -->
+    <action
+        android:id="@+id/action_global_mainMenuFragment"
+        app:destination="@+id/mainMenuFragment"
+        app:popUpTo="@+id/mainMenuFragment"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_global_loginFragment2"
+        app:destination="@+id/loginFragment2"
+        app:popUpTo="@+id/nav_graph"
+        app:popUpToInclusive="true" />
+
+</navigation>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.quizz.QuizSelectWordFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_progress_bar_header"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/deep_purple"
+        android:paddingHorizontal="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/none"
+            android:src="@drawable/baseline_arrow_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="13dp"
+            android:max="100"
+            android:paddingHorizontal="20dp"
+            android:progressDrawable="@drawable/progress_bar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_close"
+            app:layout_constraintStart_toEndOf="@id/back_icon"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/none"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/fredoka_medium"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/progress_bar"
+            app:layout_constraintStart_toStartOf="@id/progress_bar"
+            app:layout_constraintTop_toBottomOf="@id/progress_bar"
+            tools:text="16/20" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cl_progress_bar_header">
+
+        <TextView
+            android:id="@+id/tv_text_to_image_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka_medium"
+            android:text="Select the correct word"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/sound_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/sound_background"
+                android:contentDescription="@string/none"
+                android:padding="4dp"
+                android:src="@drawable/volume_up" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/fredoka_medium"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:text="Question" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rg_answers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+
+            <RadioButton
+                android:id="@+id/rb_variant_1"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/answer_background"
+                android:buttonTint="@color/blue"
+                android:fontFamily="@font/fredoka_medium"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="Answer 1"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_variant_2"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/answer_background"
+                android:buttonTint="@color/blue"
+                android:fontFamily="@font/fredoka_medium"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="Answer 2"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_variant_3"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/answer_background"
+                android:buttonTint="@color/blue"
+                android:fontFamily="@font/fredoka_medium"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="Answer 3"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <RadioButton
+                android:id="@+id/rb_variant_4"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/answer_background"
+                android:buttonTint="@color/blue"
+                android:fontFamily="@font/fredoka_medium"
+                android:gravity="center_vertical"
+                android:paddingStart="20dp"
+                android:text="Answer 4"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+        </RadioGroup>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_submit"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:fontFamily="@font/fredoka_medium"
+            android:text="Submit"
+            android:textSize="16sp"
+            app:backgroundTint="@color/blue"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
