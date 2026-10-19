@@ -55,13 +55,13 @@ class SettingsFragment : Fragment() {
 
         binding.clLogout.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Выйти из аккаунта?")
-                .setMessage("Вы уверены, что хотите выйти из приложения?")
-                .setPositiveButton("Выйти") { _, _ ->
+                .setTitle("Log Out?")
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Log Out") { _, _ ->
                     viewModel.logout()
                     findNavController().navigate(R.id.action_global_loginFragment2)
                 }
-                .setNegativeButton("Отмена") { dialog, _ ->
+                .setNegativeButton("Cancel") { dialog, _ ->
                     dialog.dismiss()
                 }
                 .show()

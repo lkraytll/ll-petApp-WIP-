@@ -12,13 +12,6 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed interface QuizState {
-    data object Idle : QuizState
-    data object Submitting : QuizState
-    data class Completed(val message: String) : QuizState
-    data class Error(val message: String) : QuizState
-}
-
 @HiltViewModel
 class QuizViewModel @Inject constructor(
     private val progressRepository: ProgressRepository,

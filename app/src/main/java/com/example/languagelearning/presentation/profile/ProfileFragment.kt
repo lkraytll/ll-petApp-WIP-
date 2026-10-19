@@ -43,7 +43,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        binding.tvTotalHoursLabel.text = "Время в занятиях"
+        binding.tvTotalHoursLabel.text = getString(R.string.study_time_label)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -71,16 +71,16 @@ class ProfileFragment : Fragment() {
 
     private fun formatStudyTime(totalSeconds: Int): String {
         if (totalSeconds < 60) {
-            return "$totalSeconds сек"
+            return "$totalSeconds sec"
         }
         val minutes = totalSeconds / 60
         val hours = minutes / 60
         val remMinutes = minutes % 60
 
         return if (hours > 0) {
-            "$hours ч $remMinutes мин"
+            "$hours h $remMinutes min"
         } else {
-            "$minutes мин"
+            "$minutes min"
         }
     }
 

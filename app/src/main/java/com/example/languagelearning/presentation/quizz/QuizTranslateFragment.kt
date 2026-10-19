@@ -86,9 +86,9 @@ class QuizTranslateFragment : Fragment() {
                         is QuizState.Completed -> {
                             binding.btnSubmitTranslate.isEnabled = true
                             MaterialAlertDialogBuilder(requireContext())
-                                .setTitle("Поздравляем! 🎉")
-                                .setMessage("Урок успешно завершен! Ваш результат сохранен.")
-                                .setPositiveButton("Отлично") { _, _ ->
+                                .setTitle(getString(R.string.congratulations))
+                                .setMessage(getString(R.string.lesson_completed))
+                                .setPositiveButton(getString(R.string.awesome)) { _, _ ->
                                     findNavController().navigate(R.id.action_quizTranslateFragment_to_mainMenuFragment)
                                 }
                                 .setCancelable(false)
@@ -107,12 +107,12 @@ class QuizTranslateFragment : Fragment() {
 
     private fun showExitWarningDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Выйти из урока?")
-            .setMessage("Ваш текущий прогресс в уроке будет потерян. Вы уверены, что хотите выйти?")
-            .setPositiveButton("Выйти") { _, _ ->
+            .setTitle(getString(R.string.exit_lesson_title))
+            .setMessage(getString(R.string.exit_lesson_message))
+            .setPositiveButton(getString(R.string.exit)) { _, _ ->
                 findNavController().navigate(R.id.action_global_mainMenuFragment)
             }
-            .setNegativeButton("Отмена") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()

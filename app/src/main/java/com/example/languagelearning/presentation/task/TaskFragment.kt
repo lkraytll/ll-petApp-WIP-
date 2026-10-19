@@ -79,7 +79,7 @@ class TaskFragment : Fragment() {
             viewModel.setGoal(selectedGoalDays)
             Toast.makeText(
                 requireContext(),
-                "Новая цель установлена: $selectedGoalDays дней в неделю!",
+                "New goal set to $selectedGoalDays days per week!",
                 Toast.LENGTH_SHORT,
             ).show()
         }
@@ -94,8 +94,8 @@ class TaskFragment : Fragment() {
                     binding.progressGoal.max = goal.targetDays
                     binding.progressGoal.progress = goal.completedDays.coerceAtMost(goal.targetDays)
 
-                    binding.tvGoalProgress.text = "${goal.completedDays} / ${goal.targetDays} дн."
-                    binding.tvStreak.text = "${goal.streakDays} дн."
+                    binding.tvGoalProgress.text = "${goal.completedDays} / ${goal.targetDays} days"
+                    binding.tvStreak.text = "${goal.streakDays} days"
 
                     val goalViews = mapOf(
                         3 to binding.tvGoal3,
@@ -118,10 +118,10 @@ class TaskFragment : Fragment() {
             binding.llLockBanner.visibility = View.VISIBLE
             binding.llLockBanner.setBackgroundResource(R.drawable.bg_lock_banner)
             binding.tvLockIcon.text = "🔒"
-            binding.tvLockMessage.text = "Выбор заблокирован! Выполните текущую цель (${goal.completedDays}/${goal.targetDays} дн.), чтобы изменить её."
+            binding.tvLockMessage.text = "Selection locked! Complete your current goal (${goal.completedDays}/${goal.targetDays} days) to change it."
             binding.scrollGoals.alpha = 0.5f
             binding.btnContinue.isEnabled = false
-            binding.btnContinue.text = "🔒 Цель заблокирована"
+            binding.btnContinue.text = "🔒 Goal Locked"
             binding.btnContinue.alpha = 0.6f
 
             goalViews.forEach { (days, textView) ->
@@ -140,10 +140,10 @@ class TaskFragment : Fragment() {
             binding.llLockBanner.visibility = View.VISIBLE
             binding.llLockBanner.setBackgroundResource(R.drawable.bg_reward)
             binding.tvLockIcon.text = "🎉"
-            binding.tvLockMessage.text = "Поздравляем! Ваша текущая цель выполнена. Вы можете выбрать новую цель!"
+            binding.tvLockMessage.text = "Congratulations! Your current goal is completed. You can select a new goal!"
             binding.scrollGoals.alpha = 1.0f
             binding.btnContinue.isEnabled = true
-            binding.btnContinue.text = "Сохранить новую цель"
+            binding.btnContinue.text = "Save New Goal"
             binding.btnContinue.alpha = 1.0f
 
             goalViews.forEach { (days, textView) ->

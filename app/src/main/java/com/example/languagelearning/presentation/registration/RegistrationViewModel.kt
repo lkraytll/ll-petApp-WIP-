@@ -1,11 +1,9 @@
 package com.example.languagelearning.presentation.registration
 
-import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.languagelearning.data.local.TokenManager
 import com.example.languagelearning.data.remote.dto.RegisterRequestDTO
-import com.example.languagelearning.data.remote.dto.RegisteredUser
 import com.example.languagelearning.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,13 +11,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-sealed interface RegistrationState {
-    data object Idle : RegistrationState
-    data object Loading : RegistrationState
-    data class Success(val user: RegisteredUser) : RegistrationState
-    data class Error(val message: String) : RegistrationState
-}
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(

@@ -1,11 +1,9 @@
 package com.example.languagelearning.presentation.login
 
-import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.languagelearning.data.local.TokenManager
 import com.example.languagelearning.data.remote.dto.LoginRequestDto
-import com.example.languagelearning.data.remote.dto.LoginResponseDto
 import com.example.languagelearning.data.repository.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,13 +11,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-sealed interface LoginState {
-    data object Idle : LoginState
-    data object Loading : LoginState
-    data class Success(val response: LoginResponseDto) : LoginState
-    data class Error(val message: String) : LoginState
-}
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(

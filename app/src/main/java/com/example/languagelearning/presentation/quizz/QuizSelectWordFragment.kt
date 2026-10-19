@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.languagelearning.R
 import com.example.languagelearning.data.local.StudyTimeTracker
 import com.example.languagelearning.databinding.FragmentQuizSelectWordBinding
@@ -67,12 +67,12 @@ class QuizSelectWordFragment : Fragment() {
 
     private fun showExitWarningDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Выйти из урока?")
-            .setMessage("Ваш текущий прогресс в уроке будет потерян. Вы уверены, что хотите выйти?")
-            .setPositiveButton("Выйти") { _, _ ->
+            .setTitle(getString(R.string.exit_lesson_title))
+            .setMessage(getString(R.string.exit_lesson_message))
+            .setPositiveButton(getString(R.string.exit)) { _, _ ->
                 findNavController().navigate(R.id.action_global_mainMenuFragment)
             }
-            .setNegativeButton("Отмена") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()

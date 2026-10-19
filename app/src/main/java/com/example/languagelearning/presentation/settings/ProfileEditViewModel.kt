@@ -12,14 +12,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-sealed interface ProfileEditState {
-    data object Idle : ProfileEditState
-    data object Loading : ProfileEditState
-    data class ProfileUpdated(val user: RegisteredUser, val message: String) : ProfileEditState
-    data class PasswordChanged(val message: String) : ProfileEditState
-    data class Error(val message: String) : ProfileEditState
-}
-
 @HiltViewModel
 class ProfileEditViewModel @Inject constructor(
     private val userRepository: UserRepository,

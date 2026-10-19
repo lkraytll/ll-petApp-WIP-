@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.languagelearning.data.local.TokenManager
 import com.example.languagelearning.data.local.UserInfo
-import com.example.languagelearning.data.remote.dto.CourseDto
 import com.example.languagelearning.data.repository.CourseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,12 +11,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-sealed interface MainMenuState {
-    data object Loading : MainMenuState
-    data class Success(val courses: List<CourseDto>) : MainMenuState
-    data class Error(val message: String) : MainMenuState
-}
 
 @HiltViewModel
 class MainMenuViewModel @Inject constructor(
