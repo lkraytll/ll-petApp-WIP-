@@ -58,8 +58,9 @@ class SettingsFragment : Fragment() {
                 .setTitle("Log Out?")
                 .setMessage("Are you sure you want to log out?")
                 .setPositiveButton("Log Out") { _, _ ->
-                    viewModel.logout()
-                    findNavController().navigate(R.id.action_global_loginFragment2)
+                    viewModel.logout {
+                        findNavController().navigate(R.id.action_global_loginFragment2)
+                    }
                 }
                 .setNegativeButton("Cancel") { dialog, _ ->
                     dialog.dismiss()

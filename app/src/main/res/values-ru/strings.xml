@@ -1,17 +1,19 @@
 <resources>
     <string name="app_name">Изучение Языков</string>
     <string name="hello_blank_fragment">Приветственный фрагмент</string>
+
+    <!-- Auth & Login -->
     <string name="fr_login_fragment_login">Войти</string>
-    <string name="iv_desc_pointer">иконка_назад</string>
+    <string name="iv_desc_pointer">Иконка назад</string>
     <string name="login_tv_line">Бесплатно, присоединяйся и \n начни учиться</string>
     <string name="forgot_password">Забыли пароль?</string>
-    <string name="register">Регистрация</string>
-    <string name="text_create_an_account">Создать аккаунт</string>
-    <string name="register_first_name_hint">   Имя</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="text_create_an_account">Создание аккаунта</string>
+    <string name="register_first_name_hint">Имя</string>
     <string name="last_name">Фамилия</string>
     <string name="ea_hint">Электронная почта</string>
     <string name="s_continue">Продолжить</string>
-    <string name="tv_already_a_member">Уже зарегистрированы?</string>
+    <string name="tv_already_a_member">Уже есть аккаунт?</string>
     <string name="choose_a_password">Выберите пароль</string>
     <string name="enter_password">Введите пароль</string>
     <string name="confirm_password">Подтвердите пароль</string>
@@ -19,42 +21,87 @@
     <string name="signup">Зарегистрироваться</string>
     <string name="already_have_a_account">Уже есть аккаунт?</string>
     <string name="or">Или</string>
-    <string name="profile_image">фото профиля</string>
+    <string name="profile_image">Фото профиля</string>
+
+    <!-- Main Navigation & Dashboard -->
     <string name="let_s_keep_learning">Продолжаем учиться</string>
     <string name="continue_course">Продолжить курс</string>
-    <string name="none">нет</string>
-    <string name="back">Назад</string>
-    <string name="study_goal">Цель обучения</string>
-    <string name="settings">Настройки</string>
-    <string name="profile">Профиль</string>
+    <string name="featured_courses">Популярные курсы</string>
+    <string name="current_language">Текущий язык</string>
+    <string name="greeting_hello">Привет, %1$s</string>
+    <string name="greeting_default">Привет, Ученик</string>
+    <string name="set_weekly_goal_banner_title">Поставь цель на неделю!</string>
+    <string name="set_weekly_goal_banner_desc">Поставь цель на неделю, чтобы оставаться мотивированным.</string>
 
-    <!-- Навигационные вкладки -->
+    <!-- Navigation Tabs -->
     <string name="tab_home">Главная</string>
-    <string name="tab_courses">Курсы</string>
+    <string name="tab_courses">Дни</string>
     <string name="tab_progress">Прогресс</string>
     <string name="tab_profile">Профиль</string>
 
-    <!-- Цели обучения -->
-    <string name="question_how_many_days">Сколько дней в неделю вы будете учиться?</string>
-    <string name="subtitle_choose_goal">Выберите цель, которую сможете соблюдать каждую неделю.</string>
-    <string name="weekly_goal">Цель на неделю</string>
-    <string name="current_streak">Текущий стрик</string>
+    <!-- Study Goals -->
+    <string name="study_goal">Цель обучения</string>
+    <string name="question_how_many_days">Сколько дней в неделю вы планируете заниматься?</string>
+    <string name="subtitle_choose_goal">Выберите цель, которую сможете выполнять каждую неделю.</string>
+    <string name="weekly_goal">Еженедельная цель</string>
+    <string name="current_streak">Серия дней</string>
     <string name="set_goal">Установить цель</string>
-    <string name="goal_locked_message">Выбор заблокирован! Выполните текущую цель (%1$s/%2$s дн.), чтобы изменить её.</string>
+    <string name="goal_locked_message">Цель заблокирована! Выполните текущую цель (%1$s/%2$s дн.), чтобы открыть новые варианты.</string>
     <string name="goal_completed_message">Поздравляем! Ваша текущая цель выполнена. Вы можете выбрать новую цель!</string>
 
-    <!-- Профиль и Активность -->
+    <!-- Profile & Settings -->
+    <string name="profile">Профиль</string>
+    <string name="settings">Настройки</string>
+    <string name="edit_profile">Редактировать профиль</string>
+    <string name="personal_info">Личная информация</string>
+    <string name="save_profile">Сохранить профиль</string>
+    <string name="security_password">Безопасность и пароль</string>
+    <string name="current_password_hint">Текущий пароль</string>
+    <string name="new_password_hint">Новый пароль</string>
+    <string name="change_password">Изменить пароль</string>
+    <string name="general_settings">Общие настройки</string>
+    <string name="my_languages">Мои языки</string>
+    <string name="add_language">Добавить язык</string>
+    <string name="help_support">Помощь и поддержка</string>
+    <string name="logout">Выйти из аккаунта</string>
+    <string name="logout_dialog_title">Выйти из аккаунта?</string>
+    <string name="logout_dialog_message">Вы уверены, что хотите выйти из аккаунта?</string>
     <string name="my_activity">Моя активность</string>
-    <string name="study_time_label">Время в занятиях</string>
-    <string name="view_all">Смотреть всё</string>
+    <string name="study_time_label">Время учебы</string>
+    <string name="view_all">Смотреть все</string>
     <string name="achievements">Достижения</string>
+    <string name="save">Сохранить</string>
 
-    <!-- Квизы и Уроки -->
+    <!-- Progress & Charts -->
+    <string name="progress_title">Прогресс</string>
+    <string name="courses_title">Курсы</string>
+    <string name="this_week">На этой неделе</string>
+    <string name="completed_tasks">Выполненные задания</string>
+    <string name="day_mon">Пн</string>
+    <string name="day_tue">Вт</string>
+    <string name="day_wed">Ср</string>
+    <string name="day_thu">Чт</string>
+    <string name="day_fri">Пт</string>
+    <string name="day_sat">Сб</string>
+    <string name="day_sun">Вс</string>
+
+    <!-- Quiz & Lessons -->
+    <string name="none">нет</string>
+    <string name="back">Назад</string>
+    <string name="submit">Отправить</string>
+    <string name="answer_hint">Ответ</string>
     <string name="exit_lesson_title">Выйти из урока?</string>
-    <string name="exit_lesson_message">Ваш текущий прогресс в уроке будет потерян. Вы уверены, что хотите выйти?</string>
+    <string name="exit_lesson_message">Ваш прогресс в этом уроке будет потерян. Вы уверены, что хотите выйти?</string>
     <string name="exit">Выйти</string>
     <string name="cancel">Отмена</string>
+    <string name="guess_its_meaning">Угадай значение...</string>
+    <string name="meaning_in_known_language">Значение на родном языке</string>
+    <string name="select_correct_image">Выбери правильную картинку</string>
+    <string name="correct_answer">Правильный ответ!</string>
+    <string name="wrong_answer">Неправильный ответ!</string>
+    <string name="next">Далее</string>
+    <string name="try_again">Попробовать снова</string>
     <string name="congratulations">Поздравляем! 🎉</string>
-    <string name="lesson_completed">Урок успешно завершён! Ваш результат сохранён.</string>
+    <string name="lesson_completed">Урок успешно завершен! Ваш результат сохранен.</string>
     <string name="awesome">Отлично</string>
 </resources>

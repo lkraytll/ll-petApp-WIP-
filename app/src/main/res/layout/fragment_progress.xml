@@ -34,7 +34,7 @@
             android:fontFamily="@font/fredoka"
             android:gravity="center"
             android:maxLines="1"
-            android:text="Progress"
+            android:text="@string/progress_title"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fredoka_medium"
-            android:text="Courses"
+            android:text="@string/courses_title"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/fredoka_medium"
-                android:text="Current Language"
+                android:text="@string/current_language"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/fredoka_regular"
-                android:text="15 / 20 lessons"
+                tools:text="15 / 20 lessons"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:fontFamily="@font/fredoka_medium"
-            android:text="Progress"
+            android:text="@string/progress_title"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -134,7 +134,7 @@
             android:background="@drawable/card_background"
             android:fontFamily="@font/fredoka_regular"
             android:gravity="center"
-            android:text="This Week"
+            android:text="@string/this_week"
             android:textColor="@color/hint_color"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="@id/tv_progress"
@@ -182,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="Mon"
+                    android:text="@string/day_mon"
                     android:textColor="@color/hint_color"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -215,7 +215,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="Tue"
+                    android:text="@string/day_tue"
                     android:textColor="@color/hint_color"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -248,7 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="Wed"
+                    android:text="@string/day_wed"
                     android:textColor="@color/hint_color"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -282,7 +282,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="Thur"
+                    android:text="@string/day_thu"
                     android:textColor="@color/hint_color"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -315,7 +315,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="Fri"
+                    android:text="@string/day_fri"
                     android:textColor="@color/hint_color"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -348,7 +348,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="Sat"
+                    android:text="@string/day_sat"
                     android:textColor="@color/hint_color"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -381,7 +381,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:gravity="center"
-                    android:text="Sun"
+                    android:text="@string/day_sun"
                     android:textColor="@color/hint_color"
                     android:textSize="10sp" />
             </LinearLayout>
@@ -394,7 +394,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/fredoka_medium"
-            android:text="Completed Task"
+            android:text="@string/completed_tasks"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"

@@ -39,6 +39,11 @@ class MainMenuFragment : Fragment() {
         observeViewModel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadCourses()
+    }
+
     private fun setupListeners() {
         binding.pgCurrentLanguage.setOnClickListener {
             findNavController().navigate(R.id.action_mainMenuFragment_to_quizSelectWordFragment)
@@ -58,9 +63,35 @@ class MainMenuFragment : Fragment() {
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.userInfo.collect { user ->
-                    if (user != null && user.name.isNotBlank()) {
-                        binding.tvGreeting.text = "Hello, ${user.name}"
+                launch {
+                    viewModel.userInfo.collect { user ->
+                        if (user != null) {
+                            val displayName = user.name.replace("null", "").trim()
+                            binding.tvGreeting.text = if (displayName.isNotBlank()) "Hello, $displayName" else "Hello, Learner"
+                        }
+                    }
+                }
+
+                launch {
+                    viewModel.completedLessonsCount.collect { count ->
+                        binding.progressCircle.progressCircle.max = 20
+                        binding.progressCircle.progressCircle.setProgress(count, true)
+                        binding.progressCircle.tvProgress.text = "$count/20"
+                    }
+                }
+
+                launch {
+                    viewModel.state.collect { state ->
+                        when (state) {
+                            is MainMenuState.Loading -> {}
+                            is MainMenuState.Success -> {
+                                val firstCourse = state.courses.firstOrNull()
+                                if (firstCourse != null) {
+                                    binding.tvCourseTitle.text = firstCourse.title
+                                }
+                            }
+                            is MainMenuState.Error -> {}
+                        }
                     }
                 }
             }

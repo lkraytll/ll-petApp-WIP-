@@ -1,10 +1,13 @@
+
 package com.example.languagelearning.presentation.registration
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.languagelearning.data.local.TokenManager
+import com.example.languagelearning.data.remote.dto.LoginRequestDto
 import com.example.languagelearning.data.remote.dto.RegisterRequestDTO
 import com.example.languagelearning.data.repository.AuthRepository
+import com.example.languagelearning.data.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
     private val repository: AuthRepository,
+    private val userRepository: UserRepository,
     private val tokenManager: TokenManager,
 ) : ViewModel() {
 
@@ -22,7 +26,9 @@ class RegistrationViewModel @Inject constructor(
     private var lastName = ""
     private var email = ""
 
-    private val _state = MutableStateFlow<RegistrationState>(RegistrationState.Idle)
+    private val _state =
+        MutableStateFlow<RegistrationState>(RegistrationState.Idle)
+
     val state: StateFlow<RegistrationState> = _state.asStateFlow()
 
     fun validateAndSetPersonalData(
@@ -37,9 +43,11 @@ class RegistrationViewModel @Inject constructor(
         if (trimmedFirstName.isBlank()) {
             return "Enter your first name"
         }
+
         if (trimmedLastName.isBlank()) {
             return "Enter your last name"
         }
+
         if (trimmedEmail.isBlank() || !isValidEmail(trimmedEmail)) {
             return "Enter a valid email address"
         }
@@ -47,6 +55,7 @@ class RegistrationViewModel @Inject constructor(
         this.firstName = trimmedFirstName
         this.lastName = trimmedLastName
         this.email = trimmedEmail
+
         return null
     }
 
@@ -75,21 +84,64 @@ class RegistrationViewModel @Inject constructor(
                     lastName = lastName,
                     email = email,
                     password = password,
-                ),
+                )
             )
 
             result.onSuccess { response ->
-                val user = response.user
-                tokenManager.saveSession(
-                    token = "registered_session_token",
-                    userId = user.id,
-                    userName = "${user.firstName} ${user.lastName ?: ""}".trim(),
-                    email = user.email,
+                val loginResult = repository.login(
+                    LoginRequestDto(
+                        email = email,
+                        password = password
+                    )
                 )
-                tokenManager.saveGoal(6)
-                _state.value = RegistrationState.Success(user)
+
+                loginResult.onSuccess { loginResponse ->
+                    val token = loginResponse.token
+
+                    if (token.isNullOrBlank()) {
+                        showError("Registration succeeded, but login returned no token.")
+                        return@onSuccess
+                    }
+
+                    val user = loginResponse.user
+
+                    if (user != null) {
+                        tokenManager.saveSession(
+                            token = token,
+                            userId = user.id,
+                            userName = "${user.firstName} ${user.lastName ?: ""}".trim(),
+                            email = user.email
+                        )
+                    } else {
+                        tokenManager.saveToken(token)
+
+                        userRepository.getMe()
+                            .onSuccess { me ->
+                                tokenManager.saveUserInfo(
+                                    userId = me.id,
+                                    userName = "${me.firstName} ${me.lastName ?: ""}".trim(),
+                                    email = me.email
+                                )
+                            }
+                            .onFailure { throwable ->
+                                showError(
+                                    throwable.message ?: "Could not load user profile."
+                                )
+                                return@onSuccess
+                            }
+                    }
+
+                    tokenManager.saveGoal(6)
+                    _state.value = RegistrationState.Success(response.user)
+                }.onFailure { throwable ->
+                    showError(
+                        "Registration succeeded, but automatic login failed: ${throwable.message}"
+                    )
+                }
             }.onFailure { throwable ->
-                showError(throwable.message ?: "Registration failed. Try again.")
+                showError(
+                    throwable.message ?: "Registration failed. Try again."
+                )
             }
         }
     }
@@ -103,6 +155,8 @@ class RegistrationViewModel @Inject constructor(
     }
 
     private fun isValidEmail(email: String): Boolean {
-        return email.contains("@") && email.contains(".") && !email.contains(" ")
+        return email.contains("@") &&
+                email.contains(".") &&
+                !email.contains(" ")
     }
 }

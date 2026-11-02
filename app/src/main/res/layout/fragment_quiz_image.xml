@@ -78,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fredoka_medium"
-            android:text="Select the correct image"
+            android:text="@string/select_correct_image"
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -105,13 +105,14 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_text_to_image_hint" />
 
             <TextView
+                android:id="@+id/tv_image_prompt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/fredoka_medium"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                tools:text="Apple" />
+                tools:text="Word" />
 
         </LinearLayout>
 
@@ -126,9 +127,12 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
             <LinearLayout
+                android:id="@+id/card_image_1"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
                 android:background="@drawable/card_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="10dp"
@@ -136,20 +140,30 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp" />
+                    android:id="@+id/iv_image_1"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null" />
 
                 <TextView
+                    android:id="@+id/tv_image_label_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/fredoka_medium"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/card_image_2"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
                 android:background="@drawable/card_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="10dp"
@@ -157,20 +171,30 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp" />
+                    android:id="@+id/iv_image_2"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null" />
 
                 <TextView
+                    android:id="@+id/tv_image_label_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/fredoka_medium"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/card_image_3"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
                 android:background="@drawable/card_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="10dp"
@@ -178,20 +202,30 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp" />
+                    android:id="@+id/iv_image_3"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null" />
 
                 <TextView
+                    android:id="@+id/tv_image_label_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/fredoka_medium"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/card_image_4"
                 android:layout_width="130dp"
                 android:layout_height="150dp"
                 android:background="@drawable/card_background"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="10dp"
@@ -199,13 +233,20 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp" />
+                    android:id="@+id/iv_image_4"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@null" />
 
                 <TextView
+                    android:id="@+id/tv_image_label_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp" />
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/fredoka_medium"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
@@ -217,7 +258,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/login_button_background"
             android:fontFamily="@font/fredoka_medium"
-            android:text="Submit"
+            android:text="@string/submit"
             android:textSize="16sp"
             app:backgroundTint="@color/blue"
             app:layout_constraintBottom_toBottomOf="parent" />

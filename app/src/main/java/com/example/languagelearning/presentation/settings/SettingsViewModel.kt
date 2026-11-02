@@ -12,9 +12,10 @@ class SettingsViewModel @Inject constructor(
     private val tokenManager: TokenManager
 ) : ViewModel() {
 
-    fun logout() {
+    fun logout(onComplete: () -> Unit) {
         viewModelScope.launch {
             tokenManager.clearToken()
+            onComplete()
         }
     }
 }

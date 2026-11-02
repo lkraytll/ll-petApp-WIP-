@@ -30,6 +30,7 @@ class SettingsViewModelTest {
     @Test
     fun testSettingsViewModelLogout() {
         var clearTokenCalled = false
+        var onCompleteCalled = false
         val dummyContext = object : ContextWrapper(null) {}
         val tokenManager = object : TokenManager(dummyContext) {
             override suspend fun clearToken() {
@@ -38,8 +39,9 @@ class SettingsViewModelTest {
         }
 
         val vm = SettingsViewModel(tokenManager)
-        vm.logout()
+        vm.logout { onCompleteCalled = true }
 
         assertTrue(clearTokenCalled)
+        assertTrue(onCompleteCalled)
     }
 }

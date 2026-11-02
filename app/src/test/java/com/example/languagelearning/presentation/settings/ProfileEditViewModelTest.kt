@@ -5,13 +5,24 @@ import com.example.languagelearning.data.local.GoalInfo
 import com.example.languagelearning.data.local.TokenManager
 import com.example.languagelearning.data.local.UserInfo
 import com.example.languagelearning.data.remote.ApiService
+import com.example.languagelearning.data.remote.dto.AddStudyTimeRequestDto
+import com.example.languagelearning.data.remote.dto.AvatarResponseDto
 import com.example.languagelearning.data.remote.dto.ChangePasswordRequestDto
+import com.example.languagelearning.data.remote.dto.CheckAnswerRequestDto
+import com.example.languagelearning.data.remote.dto.CheckAnswerResponseDto
+import com.example.languagelearning.data.remote.dto.CompletedLessonsDto
 import com.example.languagelearning.data.remote.dto.CourseDto
 import com.example.languagelearning.data.remote.dto.LessonDto
 import com.example.languagelearning.data.remote.dto.ProgressDto
+import com.example.languagelearning.data.remote.dto.ProgressRecordDto
+import com.example.languagelearning.data.remote.dto.QuestionDto
 import com.example.languagelearning.data.remote.dto.RegisteredUser
+import com.example.languagelearning.data.remote.dto.TtsRequestDto
 import com.example.languagelearning.data.remote.dto.UpdateProfileRequestDto
 import com.example.languagelearning.data.remote.dto.UpdateProgressRequestDto
+import com.example.languagelearning.data.remote.dto.UpdateProgressResponseDto
+import com.example.languagelearning.data.remote.dto.WeeklyTimeDto
+import com.example.languagelearning.data.remote.dto.WeeklyTimeResponseDto
 import com.example.languagelearning.data.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,6 +31,9 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
+import okhttp3.MultipartBody
+import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -36,23 +50,60 @@ class ProfileEditViewModelTest {
 
     private val fakeApiService = object : ApiService {
         override suspend fun getCourses(): List<CourseDto> = emptyList()
+        override suspend fun getCoursesApi(): List<CourseDto> = emptyList()
         override suspend fun getCourseLessons(courseId: Int): List<LessonDto> = emptyList()
         override suspend fun getLesson(lessonId: Int): LessonDto = LessonDto(1, 1, "Title", "Content")
         override suspend fun getLessonsByCourse(courseId: Int): List<LessonDto> = emptyList()
-        override suspend fun getProgress(userId: Int): List<ProgressDto> = emptyList()
-        override suspend fun updateProgress(userId: Int, lessonId: Int, body: UpdateProgressRequestDto): Response<ProgressDto> = Response.success(ProgressDto(userId, 1, 1, 1))
+        override suspend fun getProgress(userId: Int): List<ProgressRecordDto> = emptyList()
+        override suspend fun getProgressApi(userId: Int): List<ProgressDto> = emptyList()
+        override suspend fun getCompletedLessons(userId: Int): Response<CompletedLessonsDto> = Response.success(CompletedLessonsDto())
+        override suspend fun getCompletedLessonsApi(userId: Int): Response<CompletedLessonsDto> = Response.success(CompletedLessonsDto())
+        override suspend fun updateProgress(userId: Int, lessonId: Int, body: UpdateProgressRequestDto): Response<UpdateProgressResponseDto> = Response.success(UpdateProgressResponseDto("Success", ProgressRecordDto(1, userId, lessonId, true, 100), 1, 100, 100))
+        override suspend fun updateProgressApi(userId: Int, lessonId: Int, body: UpdateProgressRequestDto): Response<UpdateProgressResponseDto> = Response.success(UpdateProgressResponseDto("Success", ProgressRecordDto(1, userId, lessonId, true, 100), 1, 100, 100))
 
         override suspend fun getMe(): Response<RegisteredUser> {
             return Response.success(fakeUser)
         }
 
-        override suspend fun updateMe(body: UpdateProfileRequestDto): Response<RegisteredUser> {
-            return Response.success(RegisteredUser(1, body.firstName ?: "Adam", body.lastName ?: "Ingush", body.email ?: "adam@example.com"))
+        override suspend fun getMeApi(): Response<RegisteredUser> {
+            return Response.success(fakeUser)
         }
 
-        override suspend fun changePassword(body: ChangePasswordRequestDto): Response<Map<String, String>> {
-            return Response.success(mapOf("message" to "Password updated successfully"))
+        override suspend fun updateMe(body: UpdateProfileRequestDto): Response<RegisteredUser> {
+            return if (body.firstName == "Error") {
+                Response.error(400, "{\"message\":\"Error\"}".toResponseBody(null))
+            } else {
+                Response.success(RegisteredUser(1, body.firstName ?: "Adam", body.lastName ?: "Ingush", body.email ?: "adam@example.com"))
+            }
         }
+
+        override suspend fun updateMeApi(body: UpdateProfileRequestDto): Response<RegisteredUser> = updateMe(body)
+
+        override suspend fun changePassword(body: ChangePasswordRequestDto): Response<Map<String, String>> {
+            return if (body.currentPassword == "wrong") {
+                Response.error(400, "{\"message\":\"Error\"}".toResponseBody(null))
+            } else {
+                Response.success(mapOf("message" to "Password updated successfully"))
+            }
+        }
+
+        override suspend fun changePasswordApi(body: ChangePasswordRequestDto): Response<Map<String, String>> = changePassword(body)
+
+        override suspend fun updateAvatar(avatar: MultipartBody.Part): Response<AvatarResponseDto> = Response.success(AvatarResponseDto())
+        override suspend fun updateAvatarApi(avatar: MultipartBody.Part): Response<AvatarResponseDto> = Response.success(AvatarResponseDto())
+
+        override suspend fun addStudyTime(body: AddStudyTimeRequestDto): Response<Map<String, Any>> = Response.success(mapOf("ok" to true))
+        override suspend fun addStudyTimeApi(body: AddStudyTimeRequestDto): Response<Map<String, Any>> = Response.success(mapOf("ok" to true))
+        override suspend fun getWeeklyStudyTime(): Response<WeeklyTimeResponseDto> = Response.success(WeeklyTimeResponseDto(WeeklyTimeDto()))
+        override suspend fun getWeeklyStudyTimeApi(): Response<WeeklyTimeResponseDto> = Response.success(WeeklyTimeResponseDto(WeeklyTimeDto()))
+        override suspend fun synthesizeIngush(body: TtsRequestDto): Response<ResponseBody> = Response.success("audio".toResponseBody(null))
+        override suspend fun synthesizeIngushApi(body: TtsRequestDto): Response<ResponseBody> = Response.success("audio".toResponseBody(null))
+        override suspend fun getMultipleChoice(lessonId: Int): List<QuestionDto> = emptyList()
+        override suspend fun getTranslationByImage(lessonId: Int): List<QuestionDto> = emptyList()
+        override suspend fun getImageByText(lessonId: Int): List<QuestionDto> = emptyList()
+        override suspend fun getHandwrittenTranslation(lessonId: Int): List<QuestionDto> = emptyList()
+        override suspend fun checkAnswer(questionId: Int, body: CheckAnswerRequestDto): Response<CheckAnswerResponseDto> = Response.success(CheckAnswerResponseDto(true, "Correct"))
+        override suspend fun checkQuestionAnswerPath(questionId: Int, body: CheckAnswerRequestDto): Response<CheckAnswerResponseDto> = Response.success(CheckAnswerResponseDto(true, "Correct"))
     }
 
     private fun createFakeTokenManager(): TokenManager {
@@ -63,6 +114,7 @@ class ProfileEditViewModelTest {
             override val goalInfoFlow: Flow<GoalInfo> = flowOf(GoalInfo(6, 1, 6))
 
             override suspend fun saveSession(token: String, userId: Int, userName: String, email: String) {}
+            override suspend fun saveUserInfo(userId: Int, userName: String, email: String) {}
             override suspend fun saveToken(token: String) {}
             override suspend fun clearToken() {}
             override suspend fun saveGoal(targetDays: Int) {}

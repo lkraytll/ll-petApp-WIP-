@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">LanguageLearning</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Auth & Login -->
     <string name="fr_login_fragment_login">Login</string>
     <string name="iv_desc_pointer">pointer_back_icon</string>
     <string name="login_tv_line">For Free, join now and \n start learning</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="register">Register</string>
     <string name="text_create_an_account">Create an Account</string>
-    <string name="register_first_name_hint">   First Name</string>
+    <string name="register_first_name_hint">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="ea_hint">Email Address</string>
     <string name="s_continue">Continue</string>
@@ -20,21 +22,25 @@
     <string name="already_have_a_account">Already Have An Account?</string>
     <string name="or">Or</string>
     <string name="profile_image">profile image</string>
+
+    <!-- Main Navigation & Dashboard -->
     <string name="let_s_keep_learning">Let\'s Keep Learning</string>
     <string name="continue_course">Continue Course</string>
-    <string name="none">none</string>
-    <string name="back">Back</string>
-    <string name="study_goal">Study Goal</string>
-    <string name="settings">Settings</string>
-    <string name="profile">Profile</string>
+    <string name="featured_courses">Featured Courses</string>
+    <string name="current_language">Current Language</string>
+    <string name="greeting_hello">Hello, %1$s</string>
+    <string name="greeting_default">Hello, Learner</string>
+    <string name="set_weekly_goal_banner_title">Set Weekly Goal!</string>
+    <string name="set_weekly_goal_banner_desc">Set a weekly goal to stay motivated. Keep moving.</string>
 
     <!-- Navigation Tabs -->
     <string name="tab_home">Home</string>
-    <string name="tab_courses">Courses</string>
+    <string name="tab_courses">Streak</string>
     <string name="tab_progress">Progress</string>
     <string name="tab_profile">Profile</string>
 
     <!-- Study Goals -->
+    <string name="study_goal">Study Goal</string>
     <string name="question_how_many_days">How many days will you study each week?</string>
     <string name="subtitle_choose_goal">Choose a goal that you can keep every week.</string>
     <string name="weekly_goal">Weekly Goal</string>
@@ -43,17 +49,58 @@
     <string name="goal_locked_message">Goal locked! Complete your current goal (%1$s/%2$s days) to unlock new options.</string>
     <string name="goal_completed_message">Congratulations! Your current goal is completed. You can select a new goal!</string>
 
-    <!-- Profile & Activity -->
+    <!-- Profile & Settings -->
+    <string name="profile">Profile</string>
+    <string name="settings">Settings</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="personal_info">Personal Information</string>
+    <string name="save_profile">Save Profile</string>
+    <string name="security_password">Security &amp; Password</string>
+    <string name="current_password_hint">Current Password</string>
+    <string name="new_password_hint">New Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="general_settings">General Settings</string>
+    <string name="my_languages">My Languages</string>
+    <string name="add_language">Add Language</string>
+    <string name="help_support">Help &amp; Support</string>
+    <string name="logout">Log Out</string>
+    <string name="logout_dialog_title">Log Out?</string>
+    <string name="logout_dialog_message">Are you sure you want to log out?</string>
     <string name="my_activity">My Activity</string>
     <string name="study_time_label">Study Time</string>
     <string name="view_all">View All</string>
     <string name="achievements">Achievements</string>
+    <string name="save">Save</string>
+
+    <!-- Progress & Charts -->
+    <string name="progress_title">Progress</string>
+    <string name="courses_title">Courses</string>
+    <string name="this_week">This Week</string>
+    <string name="completed_tasks">Completed Tasks</string>
+    <string name="day_mon">Mon</string>
+    <string name="day_tue">Tue</string>
+    <string name="day_wed">Wed</string>
+    <string name="day_thu">Thu</string>
+    <string name="day_fri">Fri</string>
+    <string name="day_sat">Sat</string>
+    <string name="day_sun">Sun</string>
 
     <!-- Quiz & Lessons -->
+    <string name="none">none</string>
+    <string name="back">Back</string>
+    <string name="submit">Submit</string>
+    <string name="answer_hint">Answer</string>
     <string name="exit_lesson_title">Exit Lesson?</string>
     <string name="exit_lesson_message">Your current progress in this lesson will be lost. Are you sure you want to exit?</string>
     <string name="exit">Exit</string>
     <string name="cancel">Cancel</string>
+    <string name="guess_its_meaning">Guess its meaning...</string>
+    <string name="meaning_in_known_language">Meaning in Known Language</string>
+    <string name="select_correct_image">Select the correct image</string>
+    <string name="correct_answer">Correct Answer!</string>
+    <string name="wrong_answer">Wrong Answer!</string>
+    <string name="next">Next</string>
+    <string name="try_again">Try again</string>
     <string name="congratulations">Congratulations! 🎉</string>
     <string name="lesson_completed">Lesson completed successfully! Your score has been saved.</string>
     <string name="awesome">Awesome</string>

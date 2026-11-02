@@ -36,6 +36,12 @@ data class WeeklyStudyTime(
     val sun: Int,
 )
 
+data class UserLevelInfo(
+    val xp: Int,
+    val level: Int,
+    val avatarUrl: String?,
+)
+
 @Singleton
 open class TokenManager @Inject constructor(
     @ApplicationContext private val context: Context,
@@ -50,6 +56,9 @@ open class TokenManager @Inject constructor(
         private val COMPLETED_DAYS_KEY = intPreferencesKey("completed_days")
         private val STREAK_DAYS_KEY = intPreferencesKey("streak_days")
         private val STUDY_TIME_SECONDS_KEY = intPreferencesKey("study_time_seconds")
+        private val USER_XP_KEY = intPreferencesKey("user_xp")
+        private val AVATAR_URL_KEY = stringPreferencesKey("avatar_url")
+        private val LAST_SAVED_WEEK_KEY = intPreferencesKey("last_saved_week")
 
         private val STUDY_TIME_MON = intPreferencesKey("study_time_mon")
         private val STUDY_TIME_TUE = intPreferencesKey("study_time_tue")
@@ -60,6 +69,17 @@ open class TokenManager @Inject constructor(
         private val STUDY_TIME_SUN = intPreferencesKey("study_time_sun")
     }
 
+    open suspend fun saveUserInfo(
+        userId: Int,
+        userName: String,
+        email: String,
+    ) {
+        context.dataStore.edit { preferences ->
+            preferences[USER_ID_KEY] = userId
+            preferences[USER_NAME_KEY] = userName
+            preferences[USER_EMAIL_KEY] = email
+        }
+    }
     open val tokenFlow: Flow<String?>
         get() = context.dataStore.data.map { preferences ->
             preferences[TOKEN_KEY]
@@ -90,15 +110,58 @@ open class TokenManager @Inject constructor(
     open val weeklyStudyTimeFlow: Flow<WeeklyStudyTime>
         get() = context.dataStore.data.map { preferences ->
             WeeklyStudyTime(
-                mon = preferences[STUDY_TIME_MON] ?: 420,
-                tue = preferences[STUDY_TIME_TUE] ?: 600,
-                wed = preferences[STUDY_TIME_WED] ?: 330,
-                thu = preferences[STUDY_TIME_THU] ?: 900,
-                fri = preferences[STUDY_TIME_FRI] ?: 270,
-                sat = preferences[STUDY_TIME_SAT] ?: 720,
-                sun = preferences[STUDY_TIME_SUN] ?: 390,
+                mon = preferences[STUDY_TIME_MON] ?: 0,
+                tue = preferences[STUDY_TIME_TUE] ?: 0,
+                wed = preferences[STUDY_TIME_WED] ?: 0,
+                thu = preferences[STUDY_TIME_THU] ?: 0,
+                fri = preferences[STUDY_TIME_FRI] ?: 0,
+                sat = preferences[STUDY_TIME_SAT] ?: 0,
+                sun = preferences[STUDY_TIME_SUN] ?: 0,
             )
         }
+
+    open val userLevelFlow: Flow<UserLevelInfo>
+        get() = context.dataStore.data.map { preferences ->
+            val xp = preferences[USER_XP_KEY] ?: 100
+            val level = (xp / 200) + 1
+            val avatarUrl = preferences[AVATAR_URL_KEY]
+            UserLevelInfo(xp = xp, level = level, avatarUrl = avatarUrl)
+        }
+
+    open suspend fun checkAndResetWeeklyProgress() {
+        val cal = Calendar.getInstance()
+        val currentWeekId = cal.get(Calendar.YEAR) * 100 + cal.get(Calendar.WEEK_OF_YEAR)
+
+        context.dataStore.edit { preferences ->
+            val lastWeekId = preferences[LAST_SAVED_WEEK_KEY] ?: currentWeekId
+            if (currentWeekId > lastWeekId) {
+                preferences[STUDY_TIME_MON] = 0
+                preferences[STUDY_TIME_TUE] = 0
+                preferences[STUDY_TIME_WED] = 0
+                preferences[STUDY_TIME_THU] = 0
+                preferences[STUDY_TIME_FRI] = 0
+                preferences[STUDY_TIME_SAT] = 0
+                preferences[STUDY_TIME_SUN] = 0
+                preferences[LAST_SAVED_WEEK_KEY] = currentWeekId
+            } else if (preferences[LAST_SAVED_WEEK_KEY] == null) {
+                preferences[LAST_SAVED_WEEK_KEY] = currentWeekId
+            }
+        }
+    }
+
+    open suspend fun addXp(amount: Int) {
+        if (amount <= 0) return
+        context.dataStore.edit { preferences ->
+            val currentXp = preferences[USER_XP_KEY] ?: 100
+            preferences[USER_XP_KEY] = currentXp + amount
+        }
+    }
+
+    open suspend fun saveAvatarUrl(url: String) {
+        context.dataStore.edit { preferences ->
+            preferences[AVATAR_URL_KEY] = url
+        }
+    }
 
     open suspend fun addStudyTimeSeconds(seconds: Int) {
         if (seconds <= 0) return

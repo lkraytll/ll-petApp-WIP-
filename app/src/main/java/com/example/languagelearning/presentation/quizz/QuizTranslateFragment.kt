@@ -66,7 +66,18 @@ class QuizTranslateFragment : Fragment() {
         }
 
         binding.btnSubmitTranslate.setOnClickListener {
-            viewModel.completeLesson(lessonId = 1, isCompleted = true, score = 100)
+            val typedAnswer = binding.etTranslateAnswer.text.toString().trim()
+            val question = viewModel.handwrittenTranslationQuestions.value.firstOrNull()
+            val questionId = question?.id ?: 1
+
+            viewModel.checkQuestionAnswer(questionId = questionId, answer = typedAnswer) { isCorrect, _ ->
+                val sheet = AnswerFeedbackBottomSheet(isCorrect = isCorrect) {
+                    if (isCorrect) {
+                        viewModel.completeLesson(lessonId = 1, isCompleted = true, score = 100)
+                    }
+                }
+                sheet.show(parentFragmentManager, AnswerFeedbackBottomSheet.TAG)
+            }
         }
     }
 

@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.languagelearning.R
 import com.example.languagelearning.data.local.StudyTimeTracker
 import com.example.languagelearning.databinding.FragmentQuizSelectWordBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -38,6 +41,11 @@ class QuizSelectWordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupListeners()
+        observeViewModel()
+    }
+
+    private fun setupListeners() {
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
@@ -55,8 +63,72 @@ class QuizSelectWordFragment : Fragment() {
             showExitWarningDialog()
         }
 
+        binding.soundButton.setOnClickListener {
+            val textToSpeak = viewModel.multipleChoiceQuestions.value.firstOrNull()?.prompt
+                ?: viewModel.multipleChoiceQuestions.value.firstOrNull()?.correctAnswer
+                ?: "Ӏаьржа"
+            viewModel.speak(textToSpeak)
+        }
+
         binding.btnSubmit.setOnClickListener {
-            findNavController().navigate(R.id.action_quizSelectWordFragment_to_quizMeaningFragment)
+            viewModel.stopSpeech()
+
+            val question = viewModel.multipleChoiceQuestions.value.firstOrNull()
+            val questionId = question?.id ?: 1
+            val options = question?.options ?: emptyList()
+
+            val selectedOptionId = when (binding.rgAnswers.checkedRadioButtonId) {
+                R.id.rb_variant_1 -> options.getOrNull(0)?.id
+                R.id.rb_variant_2 -> options.getOrNull(1)?.id
+                R.id.rb_variant_3 -> options.getOrNull(2)?.id
+                R.id.rb_variant_4 -> options.getOrNull(3)?.id
+                else -> null
+            }
+
+            viewModel.checkQuestionAnswer(questionId = questionId, optionId = selectedOptionId) { isCorrect, _ ->
+                val sheet = AnswerFeedbackBottomSheet(isCorrect = isCorrect) {
+                    if (isCorrect) {
+                        findNavController().navigate(R.id.action_quizSelectWordFragment_to_quizMeaningFragment)
+                    }
+                }
+                sheet.show(parentFragmentManager, AnswerFeedbackBottomSheet.TAG)
+            }
+        }
+    }
+
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.multipleChoiceQuestions.collect { list ->
+                        val firstQuestion = list.firstOrNull()
+                        if (firstQuestion != null) {
+                            if (firstQuestion.prompt.isNotBlank()) {
+                                binding.tvTextToImageHint.text = firstQuestion.prompt
+                                viewModel.speak(firstQuestion.prompt)
+                            }
+                            val opts = firstQuestion.options
+                            if (opts.isNotEmpty()) {
+                                val radioButtons = listOf(
+                                    binding.rbVariant1,
+                                    binding.rbVariant2,
+                                    binding.rbVariant3,
+                                    binding.rbVariant4
+                                )
+                                radioButtons.forEachIndexed { index, rb ->
+                                    val option = opts.getOrNull(index)
+                                    if (option != null) {
+                                        rb.text = option.text ?: "Option ${index + 1}"
+                                        rb.visibility = View.VISIBLE
+                                    } else {
+                                        rb.visibility = View.GONE
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 

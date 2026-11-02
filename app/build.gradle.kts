@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.navigationSafeargs)
+    id("org.jetbrains.kotlin.kapt")
     id("jacoco")
 }
 
@@ -117,6 +118,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     debugImplementation(libs.leakcanary)
 
+    ksp("com.github.bumptech.glide:compiler:4.16.0")
     // Room
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
@@ -124,4 +126,7 @@ dependencies {
 
     // DataStore Preferences
     implementation(libs.datastore.preferences)
+
+    // Coil Image Loading
+    implementation(libs.coil.kt)
 }

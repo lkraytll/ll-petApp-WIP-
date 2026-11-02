@@ -70,11 +70,10 @@ class ProfileEditViewModel @Inject constructor(
 
             result.onSuccess { user ->
                 _userProfile.value = user
-                tokenManager.saveSession(
-                    token = "", // Keep current token in DataStore
+                tokenManager.saveUserInfo(
                     userId = user.id,
                     userName = "${user.firstName} ${user.lastName ?: ""}".trim(),
-                    email = user.email,
+                    email = user.email
                 )
                 _state.value = ProfileEditState.ProfileUpdated(user, "Profile updated successfully!")
             }.onFailure { throwable ->

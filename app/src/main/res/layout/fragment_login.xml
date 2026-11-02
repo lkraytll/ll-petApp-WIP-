@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.login.LoginFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_login"
         android:layout_width="match_parent"
@@ -16,7 +15,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <TextView
             android:id="@+id/tv_login_title"
@@ -34,7 +32,6 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_login_fields"
@@ -169,7 +166,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
                 android:fontFamily="@font/fredoka"
-                android:text="Or"
+                android:text="@string/or"
                 app:layout_constraintBottom_toTopOf="@id/b_register"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -181,12 +178,11 @@
                 android:layout_height="50dp"
                 android:background="@drawable/login_button_background"
                 android:fontFamily="@font/fredoka_medium"
-                android:text="Register"
+                android:text="@string/register"
                 android:textSize="20sp"
                 app:backgroundTint="@color/blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_or" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

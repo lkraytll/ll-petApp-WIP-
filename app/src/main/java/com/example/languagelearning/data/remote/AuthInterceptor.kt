@@ -1,5 +1,7 @@
+
 package com.example.languagelearning.data.remote
 
+import android.util.Log
 import com.example.languagelearning.data.local.TokenManager
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
@@ -14,15 +16,21 @@ class AuthInterceptor @Inject constructor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val requestBuilder = chain.request().newBuilder()
+        val originalRequest = chain.request()
 
         val token = runBlocking {
             tokenManager.tokenFlow.firstOrNull()
         }
 
-        if (!token.isNullOrEmpty()) {
-            requestBuilder.addHeader("Authorization", "Bearer $token")
+        val requestBuilder = originalRequest.newBuilder()
+
+        if (!token.isNullOrBlank()) {
+            requestBuilder.header(
+                "Authorization",
+                "Bearer $token"
+            )
         }
+        Log.i("TOken", "intercept: Got Token")
 
         return chain.proceed(requestBuilder.build())
     }

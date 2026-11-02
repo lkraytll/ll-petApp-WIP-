@@ -1,7 +1,7 @@
 package com.example.languagelearning.presentation
 
 import com.example.languagelearning.data.remote.dto.CourseDto
-import com.example.languagelearning.data.remote.dto.ProgressDto
+import com.example.languagelearning.data.remote.dto.ProgressRecordDto
 import com.example.languagelearning.data.remote.dto.RegisteredUser
 import com.example.languagelearning.presentation.login.LoginState
 import com.example.languagelearning.presentation.mainMenu.MainMenuState
@@ -65,7 +65,7 @@ class ViewModelsUnitTest {
     @Test
     fun testProgressStateSealedInterface() {
         val loading: ProgressState = ProgressState.Loading
-        val progress = ProgressDto(1, 1, 5, 20)
+        val progress = ProgressRecordDto(1, 1, 1, true, 100)
         val success: ProgressState = ProgressState.Success(listOf(progress))
         val error: ProgressState = ProgressState.Error("Error")
 

@@ -1,3 +1,4 @@
+
 package com.example.languagelearning.data.remote
 
 import com.example.languagelearning.data.remote.dto.LoginRequestDto
@@ -12,11 +13,11 @@ interface AuthApiService {
 
     @POST("auth/login")
     suspend fun login(
-        @Body request: LoginRequestDto,
+        @Body request: LoginRequestDto
     ): Response<LoginResponseDto>
 
     @POST("auth/register")
     suspend fun register(
-        @Body request: RegisterRequestDTO,
+        @Body request: RegisterRequestDTO
     ): Response<RegisterResponse>
 }

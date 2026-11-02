@@ -119,6 +119,7 @@
                         app:layout_constraintEnd_toEndOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv_course_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
@@ -170,7 +171,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka_medium"
-                    android:text="Featured Courses"
+                    android:text="@string/featured_courses"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
 
@@ -255,7 +256,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/fredoka_medium"
-                        android:text="Set Weekly Goal!"
+                        android:text="@string/set_weekly_goal_banner_title"
                         android:textColor="@color/black"
                         android:textSize="17sp" />
 
@@ -263,7 +264,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Set a weekly goal to stay motivated. Keep moving."
+                        android:text="@string/set_weekly_goal_banner_desc"
                         android:textSize="14sp" />
 
                 </LinearLayout>
